@@ -1,0 +1,24 @@
+{
+  "parserOptions": {
+    "ecmaVersion": 6,
+    "sourceType": "module"
+  },
+  "rules": {
+    "comma-dangle": 1,
+    "quotes": [ "error", "single" ],
+    "no-undef": 1,
+    "global-strict": 0,
+    "no-extra-semi": 1,
+    "semi": ["warn", "never"],
+    "no-underscore-dangle": 0,
+    "no-console": ["warn", { allow: ["warn", "error"] }],
+    "no-unused-vars": 1,
+    "no-trailing-spaces": [1, { "skipBlankLines": true }],
+    "no-unreachable": "error",
+    "no-alert": 0,
+  },
+  "env": {
+    "browser": true,
+    "node": true
+  }
+}
