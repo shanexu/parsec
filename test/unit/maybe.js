@@ -83,4 +83,11 @@ describe('Maybe', () => {
     let m2 = liftA2(identity, just(1), just(2))
     expect(m2.value).to.equal(1)
   })
+
+  it('should >>=', () => {
+    let m = just(1)
+    let m1 = (m) ['>>='] (v => just(v+1))
+    expect(m1).to.be.instanceOf(Just)
+    expect(m1.value).to.equal(2)
+  })
 })

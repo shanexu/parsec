@@ -1,4 +1,4 @@
-import { isEqual, isFunction } from 'lodash/fp'
+import { isEqual, isFunction, each } from 'lodash/fp'
 
 const babelClassCheckTypeError = new TypeError('Cannot call a class as a function')
 
@@ -43,7 +43,7 @@ export function _instance_where(typeClass, data, funcs) {
   _instance(typeClass, data).where(funcs)
 }
 
-export function _instance_method(type, name, f) {
+export function _instance_method(type, name, f, defaultImplement) {
   let instances = type.instances || []
   for(let i = 0; i < instances.length; i++) {
     let [data, funcs] = instances[i]
@@ -54,5 +54,12 @@ export function _instance_method(type, name, f) {
       return funcs[name]
     }
   }
+  if(defaultImplement) {
+    return defaultImplement
+  }
   throw new TypeError(`No instance for (${type}, ${f})`)
+}
+
+export function _extend(target, ...sources) {
+  each(s => each(k => { target[k] = s[k] }, Object.keys(s||{})), sources)
 }

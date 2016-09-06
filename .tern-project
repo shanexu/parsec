@@ -1,0 +1,11 @@
+{
+  "libs": [
+    "lodash/fp"
+  ],
+  "loadEagerly": [
+  ],
+  "plugins": {
+    "es_modules": {
+    }
+  }
+}
