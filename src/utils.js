@@ -1,6 +1,8 @@
-import { isEqual, isFunction, each } from 'lodash/fp'
+import { isEqual, isFunction, each, isNumber, isString } from 'lodash/fp'
 
 const babelClassCheckTypeError = new TypeError('Cannot call a class as a function')
+
+export function otherwise(){ return true }
 
 export function _case(value) {
   return {
@@ -53,11 +55,17 @@ export function _instance_method(type, name, f, defaultImplement) {
     if(f instanceof data) {
       return funcs[name]
     }
+    if(data === Number && isNumber(f)) {
+      return funcs[name]
+    }
+    if(data === String && isString(f)) {
+      return funcs[name]
+    }
   }
   if(defaultImplement) {
     return defaultImplement
   }
-  throw new TypeError(`No instance for (${type}, ${f})`)
+  throw new TypeError(`No instance for (${type._name}, ${f})`)
 }
 
 export function _extend(target, ...sources) {
