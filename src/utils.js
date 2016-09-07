@@ -50,20 +50,17 @@ export function _instance_method(type, name, f, defaultImplement) {
   for(let i = 0; i < instances.length; i++) {
     let [data, funcs] = instances[i]
     if(f === data) {
-      return funcs[name]
+      return funcs[name] || defaultImplement
     }
     if(f instanceof data) {
-      return funcs[name]
+      return funcs[name] || defaultImplement
     }
     if(data === Number && isNumber(f)) {
-      return funcs[name]
+      return funcs[name] || defaultImplement
     }
     if(data === String && isString(f)) {
-      return funcs[name]
+      return funcs[name] || defaultImplement
     }
-  }
-  if(defaultImplement) {
-    return defaultImplement
   }
   throw new TypeError(`No instance for (${type._name}, ${f})`)
 }

@@ -1,4 +1,4 @@
-import { Right, Left, right, left } from '../../src/eiter.js'
+import { Right, Left, right, left } from '../../src/either.js'
 
 describe('either', () => {
   it('should fmap Left', () => {

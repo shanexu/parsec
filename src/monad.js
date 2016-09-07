@@ -1,17 +1,17 @@
-import { curry, flatMap } from 'lodash/fp'
-import { _instance_method, _instance } from './utils.js'
-import { flip } from 'lodash/fp'
+import { curry, flatMap, flip } from 'lodash/fp'
+import { _instance_method, _instance, _extend } from './utils.js'
 import { pure } from './applicative.js'
 
-let bind = curry((ma, f) => _instance_method(Monad, '>>=', ma)(ma, f))
+let binding = curry((ma, f) => _instance_method(Monad, '>>=', ma)(ma, f))
 let defaultFail = s => { throw new Error(s) }
-let defaultSequentiallyCompose = (m, k) => bind(m, () => k)
+let defaultSequentiallyCompose = (m, k) => binding(m, () => k)
 
 let Monad = {
   // Sequentially compose two actions, passing any value produced
   // by the first as an argument to the second.
   // m a -> (a -> m b) -> m b
-  '>>=': bind
+  '>>=': binding
+  ,binding
 
   // Sequentially compose two actions, discarding any value produced
   // by the first, like sequencing operators (such as the semicolon)
@@ -21,7 +21,7 @@ let Monad = {
 
   // Inject a value into the monadic type.
   // a -> m a
-  ,return: pure
+  ,return: curry((m, a) => _instance_method(Monad, 'return', m, pure)(m, a))
 
   // | Fail with a message.  This operation is not part of the
   // mathematical definition of a monad, but is invoked on pattern-match
@@ -36,7 +36,7 @@ let Monad = {
 
   // Same as '>>=', but with the arguments interchanged.
   // (a -> m b) -> m a -> m b
-  ,'=<<': flip(bind)
+  ,'=<<': flip(binding)
 
   ,_methods: {
     '>>=': function(f) {
@@ -45,7 +45,7 @@ let Monad = {
     ,'>>': function(k) {
       return Monad['>>'](this, k)
     }
-    ,bind: function(f) {
+    ,binding: function(f) {
       return Monad['>>='](this, f)
     }
   }
@@ -55,16 +55,6 @@ _instance(Monad, Array).where({
   '>>=': (xs, f) => flatMap(f, xs)
 })
 
-Array.prototype['>>='] = function(f){
-  return Monad['>>='](this, f)
-}
-
-Array.prototype['>>'] = function(k) {
-  return Monad['>>'](this, k)
-}
-
-Function.prototype['=<<'] = function(m) {
-  return Monad['=<<'](this, m)
-}
+_extend(Array.prototype, Monad._methods)
 
 module.exports = Monad
