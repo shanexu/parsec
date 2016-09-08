@@ -1,4 +1,4 @@
-import { _instance_method, _instance } from './utils.js'
+import { _instance_method, _instance, _extend } from './utils.js'
 import { curry, concat } from 'lodash/fp'
 
 let empty = type => _instance_method(Alternative, 'empty', type)
@@ -27,8 +27,7 @@ _instance(Alternative, Array).where({
   '<|>': concat
 })
 
-Array.prototype['<|>'] = function(other) {
-  return Alternative['<|>'](this, other)
-}
+_extend(Array.prototype, Alternative._methods)
+_extend(Array, Alternative._static_methods)
 
 module.exports = Alternative

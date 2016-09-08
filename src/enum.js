@@ -64,6 +64,11 @@ let Enum = {
       return Enum['fromEnum'](this)
     }
   }
+  ,_static_methods: {
+    toEnum: function(i) {
+      return Enum['toEnum'](this, i)
+    }
+  }
 }
 
 module.exports = Enum

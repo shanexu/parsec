@@ -49,6 +49,17 @@ let Monad = {
       return Monad['>>='](this, f)
     }
   }
+  ,_static_methods: {
+    return: function(a) {
+      return Monad['return'](this, a)
+    }
+    ,fail: function(s) {
+      return Monad['fail'](this, s)
+    }
+    ,'=<<': function(a,m) {
+      return Monad['=<<'](a,m)
+    }
+  }
 }
 
 _instance(Monad, Array).where({

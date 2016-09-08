@@ -19,6 +19,7 @@ export class Either{
 }
 
 _extend(Either.prototype, Functor._methods, Applicative._methods, Monad._methods)
+_extend(Either, Functor._static_methods, Applicative._static_methods, Monad._static_methods)
 
 export class Right extends Either {
   constructor(value) {

@@ -1,5 +1,5 @@
 import { identity, curry, flip, flatMap } from 'lodash/fp'
-import { _instance_method, _instance } from './utils.js'
+import { _instance_method, _instance, _extend } from './utils.js'
 import Functor from './functor.js'
 
 let pure = curry((f, a) => _instance_method(Applicative, 'pure', f)(a))
@@ -46,11 +46,25 @@ let Applicative = {
       return Applicative['<*'](this, m)
     }
   }
+  ,_static_methods: {
+    pure: function(a) {
+      return Applicative['pure'](this)(a)
+    }
+    ,liftA: function(ab, fa) {
+      return Applicative['liftA'](ab, fa)
+    }
+    ,liftA2: function(abc, fa, fb) {
+      return Applicative['liftA2'](abc, fa, fb)
+    }
+  }
 }
 
 _instance(Applicative, Array).where({
   pure: a => [a],
   '<*>': (funs, arr) => flatMap(f => Functor.fmap(f, arr), funs)
 })
+
+_extend(Array.prototype, Applicative._methods)
+_extend(Array, Applicative._static_methods)
 
 module.exports = Applicative
