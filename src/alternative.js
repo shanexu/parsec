@@ -10,9 +10,14 @@ let Alternative = {
   // An associative binary operation
   // f a -> f a -> f a
   ,'<|>': f1
-  ,_methods:{
+  ,_methods: {
     '<|>': function(other) {
       return Alternative['<|>'](this, other)
+    }
+  }
+  ,_static_methods: {
+    empty: function() {
+      return Alternative['empty'](this)
     }
   }
 }
