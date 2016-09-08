@@ -2,6 +2,7 @@ import { identity } from 'lodash/fp'
 import { Maybe, Nothing, Just, just } from '../../src/maybe.js'
 import Functor from '../../src/functor.js'
 import Applicative, { pure, liftA2, liftA } from '../../src/applicative.js'
+import M from '../../src/monad.js'
 
 describe('Maybe', () => {
   it('should Nothing', () => {
@@ -89,5 +90,10 @@ describe('Maybe', () => {
     let m1 = (m) ['>>='] (v => just(v+1))
     expect(m1).to.be.instanceOf(Just)
     expect(m1.value).to.equal(2)
+  })
+
+  it('should M.return', () => {
+    let m = M.return(Just)(1)
+    expect(m).to.be.instanceOf(Just)
   })
 })

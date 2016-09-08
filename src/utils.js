@@ -55,6 +55,9 @@ export function _instance_method(type, name, f, defaultImplement) {
     if(f instanceof data) {
       return funcs[name] || defaultImplement
     }
+    if(data.prototype.isPrototypeOf(f.prototype)) {
+      return funcs[name] || defaultImplement
+    }
     if(data === Number && isNumber(f)) {
       return funcs[name] || defaultImplement
     }
