@@ -5,16 +5,17 @@ import Eq from '../eq.js'
 import Ord, { compare } from '../ord.js'
 import { LT, EQ, GT } from '../ordering.js'
 
-export class Message {
+export class MessageData {
   constructor(s) {
     this.s = s
   }
 }
-export class SysUnExpect extends Message {}
-export class UnExpect extends Message {}
-export class Expect extends Message {}
+export class Message extends MessageData {}
+export class SysUnExpect extends MessageData {}
+export class UnExpect extends MessageData {}
+export class Expect extends MessageData {}
 
-_instance(Enum, Message).where({
+_instance(Enum, MessageData).where({
   fromEnum: m => _case(m).of([
      [SysUnExpect, () => 0]
     ,[UnExpect,    () => 1]
@@ -24,15 +25,16 @@ _instance(Enum, Message).where({
   ,toEnum: () => { throw new Error('toEnum is undefined for Message') }
 })
 
-_instance(Eq, Message).where({
+_instance(Eq, MessageData).where({
   '==': (m1, m2) => fromEnum(m1) === fromEnum(m2)
 })
 
-_instance(Ord, Message).where({
+_instance(Ord, MessageData).where({
   compare: (m1, m2) => compare(fromEnum(m1), fromEnum(m2))
 })
 
-_extend(Message.prototype, Enum._methods, Eq._methods)
+_extend(MessageData.prototype, Enum._methods, Eq._methods)
+_extend(MessageData, Enum._static_methods, Eq._static_methods)
 
 // | Extract the message string from an error message
 // messageString :: Message -> String

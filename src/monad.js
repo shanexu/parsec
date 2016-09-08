@@ -67,5 +67,6 @@ _instance(Monad, Array).where({
 })
 
 _extend(Array.prototype, Monad._methods)
+_extend(Array, Monad._static_methods)
 
 module.exports = Monad

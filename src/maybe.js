@@ -16,6 +16,7 @@ export class Maybe{
 }
 
 _extend(Maybe.prototype, Functor._methods, Applicative._methods, Monad._methods, Alternative._methods)
+_extend(Maybe, Functor._static_methods, Applicative._static_methods, Monad._static_methods, Alternative._static_methods)
 
 export class Just extends Maybe {
   constructor(value) {
