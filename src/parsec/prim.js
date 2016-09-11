@@ -75,7 +75,6 @@ export let statePos = ({statePos}) => statePos
 // newtype ParsecT s u m a
 //     = ParsecT {unParser :: forall b .
 //                  State s u
-//               -> m                                     -- monad type
 //               -> (m -> a -> State s u -> ParseError -> m b) -- consumed ok
 //               -> (m -> ParseError -> m b)                   -- consumed err
 //               -> (m -> a -> State s u -> ParseError -> m b) -- empty ok
@@ -84,11 +83,12 @@ export let statePos = ({statePos}) => statePos
 //              }
 // we should pass type information
 export class ParsecT {
-  constructor(unParser) {
+  constructor(m, unParser) {
+    this.m = m
     this.unParser = unParser
   }
 }
-export let ParsecT_ = p => new ParsecT(p)
+export let ParsecT_ = curry((m, p) => new ParsecT(m, p))
 export let unParser = ({unParser}) => unParser
 
 // unknownError :: State s u -> ParseError
@@ -110,7 +110,8 @@ export let unexpected = msg => new ParsecT((m, s, cok, cerr, eok, eerr) => eerr(
 // | Low-level unpacking of the ParsecT type. To run your parser, please look to
 // runPT, runP, runParserT, runParser and other such functions.
 // runParsecT :: Monad m => m -> ParsecT s u m a -> State s u -> m (Consumed (m (Reply s u a)))
-export let runParsecT = curry((m, p, s) => {
+export let runParsecT = curry((p, s) => {
+  let m = p.m
   let parser = unParser(p)
   let cok = curry((m, a, s1, err) => compose(M.return(m), Consumed_, M.return(m))(Ok_(a, s1, err)))
   let cerr = curry((m, err) => compose(M.return(m), Consumed_, M.return(m))(Error_(err)))
@@ -119,25 +120,23 @@ export let runParsecT = curry((m, p, s) => {
   return parser(m)(s, cok, cerr, eok, eerr)
 })
 
-// | Low-level unpacking of the ParsecT type. To run your parser, please look to
-// runPT, runP, runParserT, runParser and other such functions.
-// runParsecT :: Monad m => ParsecT s u m a -> State s u -> m (Consumed (m (Reply s u a)))
-export let mkPT = (m, k) =>
-  ParsecT_(
-    (m, s, cok, cerr, eok, eerr) =>
-      k(s) ['>>='] (cons => _case(cons).of([
-        [Consumed,
-         ({value:mrep}) => mrep ['>>='] (
-           rep => _case(rep).of([
-             [Ok,    ({value:x, state:s1, error:err}) => cok(m, x, s1, err)],
-             [Error, ({error:err}) => cerr(m, err)]
-           ]))],
-        [Empty,
-         ({value:mrep}) => mrep ['>>='] (
-           rep => _case(rep).of([
-             [Ok,    ({value:x, state:s1, error:err}) => eok(m, x, s1, err)],
-             [Error, ({error:err}) => eerr(m, err)]
-           ])
-         )]
-      ]))
-  )
+// | Low-level creation of the ParsecT type. You really shouldn't have to do this.
+// mkPT :: Monad m => (State s u -> m (Consumed (m (Reply s u a)))) -> ParsecT s u m a
+export let mkPT = curry((m, k) => ParsecT_(
+  (m, s, cok, cerr, eok, eerr) =>
+    k(s) ['>>='] (cons => _case(cons).of([
+      [Consumed,
+       ({value:mrep}) => mrep ['>>='] (
+         rep => _case(rep).of([
+           [Ok,    ({value:x, state:s1, error:err}) => cok(m, x, s1, err)],
+           [Error, ({error:err}) => cerr(m, err)]
+         ]))],
+      [Empty,
+       ({value:mrep}) => mrep ['>>='] (
+         rep => _case(rep).of([
+           [Ok,    ({value:x, state:s1, error:err}) => eok(m, x, s1, err)],
+           [Error, ({error:err}) => eerr(m, err)]
+         ])
+       )]
+    ]))
+))
