@@ -1,7 +1,11 @@
+// http://hackage.haskell.org/package/parsec-3.1.11/docs/src/Text.Parsec.Prim.html
+
 import { curry, compose } from 'lodash/fp'
 import { _instance, _extend, _case } from '../utils.js'
 import Functor from '../functor.js'
+import Applicative from '../applicative.js'
 import M from '../monad.js'
+import Identity from '../identity.js'
 import { newErrorUnknown, newErrorMessage, SysUnExpect, UnExpect } from './error.js'
 
 const payload = {}
@@ -18,6 +22,7 @@ _instance(Functor, ConsumedData).where({
   ])
 })
 _extend(ConsumedData.prototype, Functor._methods)
+_extend(ConsumedData, Functor._static_methods)
 export class Consumed extends ConsumedData {}
 export let Consumed_ = value => new Consumed(value)
 export class Empty extends ConsumedData {}
@@ -54,6 +59,7 @@ _instance(Functor, Reply).where({
   ])
 })
 _extend(Reply.prototype, Functor._methods)
+_extend(Reply, Functor._static_methods)
 
 export class State {
   constructor(stateInput, statePos, stateUser) {
@@ -90,6 +96,33 @@ export class ParsecT {
 }
 export let ParsecT_ = curry((m, p) => new ParsecT(m, p))
 export let unParser = ({unParser}) => unParser
+
+// parsecMap :: (a -> b) -> ParsecT s u m a -> ParsecT s u m b
+export let parsecMap = curry((f, p) => ParsecT_((m, s, cok, cerr, eok, eerr) => unParser(p)(m, s, compose(cok, f), cerr, compose(eok, f), eerr)))
+
+_instance(Functor, ParsecT).where({
+  fmap: (f, p) => parsecMap(f, p)
+})
+
+
+// parserReturn :: a -> ParsecT s u m a
+export let parserReturn = x => ParsecT_((m, s, cok, cerr, eok, eerr) => eok(m.return(x), s, unknownError(s)))
+
+// parserBind :: ParsecT s u m a -> (a -> ParsecT s u m b) -> ParsecT s u m b
+export let parserBind = (f, k) => ParsecT_((m, s, cok, cerr, eok, eerr) => {
+// todo
+})
+
+_instance(M, ParsecT).where({
+  return: x => parserReturn(x)
+})
+
+// _instance(Applicative, ParsecT).where({
+//   pure:
+// })
+
+_extend(ParsecT.prototype, Functor._methods)
+_extend(ParsecT, Functor._static_methods)
 
 // unknownError :: State s u -> ParseError
 export let unknownError = state => newErrorUnknown(statePos(state))
@@ -140,3 +173,10 @@ export let mkPT = curry((m, k) => ParsecT_(
        )]
     ]))
 ))
+
+export class Parsec extends ParsecT {
+  constructor(unParser) {
+    super(Identity, unParser)
+  }
+}
+export let ParsecT_ = unParser => new Parsec(unParser)
