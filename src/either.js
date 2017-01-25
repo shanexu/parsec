@@ -1,14 +1,24 @@
-import { identity, curry, filter } from 'lodash/fp'
-import { _instance, _case, _extend } from './utils.js'
-import Functor, { fmap } from './functor.js'
+import {
+  identity,
+  curry,
+  filter
+} from 'lodash/fp'
+import {
+  _instance,
+  _case,
+  _extend
+} from './utils.js'
+import Functor, {
+  fmap
+} from './functor.js'
 import Applicative from './applicative.js'
 import Monad from './monad.js'
 
 let payload = {}
 
-export class Either{
+export class Either {
   constructor(value, x) {
-    if(x !== payload) {
+    if (x !== payload) {
       throw new TypeError('Either is an abstract class')
     }
     this.value = value
@@ -60,20 +70,27 @@ export function left(value) {
 // 6
 //
 // either                  :: (a -> c) -> (b -> c) -> Either a b -> c
-export let either = curry((f, g, e) => _case(e).of([
-  [Left,   ({value:x}) => f(x)]
-  ,[Right, ({value:y}) => g(y)]
-]))
+export let either = curry((f, g, e) => _case(e)
+  .of([
+    [Left, ({
+      value: x
+    }) => f(x)],
+    [Right, ({
+      value: y
+    }) => g(y)]
+  ]))
 
-export let isLeft = e => _case(e).of([
-  [Left,   () => true]
-  ,[Right, () => false]
-])
+export let isLeft = e => _case(e)
+  .of([
+    [Left, () => true],
+    [Right, () => false]
+  ])
 
-export let isRight = e => _case(e).of([
-  [Left,   () => false]
-  ,[Right, () => true]
-])
+export let isRight = e => _case(e)
+  .of([
+    [Left, () => false],
+    [Right, () => true]
+  ])
 
 // | Partitions a list of 'Either' into two lists.
 // All the 'Left' elements are extracted, in order, to the first
@@ -126,24 +143,36 @@ export let lefts = filter(isLeft)
 // rights   :: [Either a b] -> [b]
 export let rights = filter(isRight)
 
-_instance(Functor, Either).where({
-  fmap: (func, e) => _case(e).of([
-    [Left,   identity]
-    ,[Right, ({value}) => right(func(value))]
-  ])
-})
+_instance(Functor, Either)
+  .where({
+    fmap: (func, e) => _case(e)
+      .of([
+        [Left, identity],
+        [Right, ({
+          value
+        }) => right(func(value))]
+      ])
+  })
 
-_instance(Applicative, Either).where({
-  pure: right
-  ,'<*>': (mf, m) => _case(mf).of([
-    [Left,   identity]
-    ,[Right, ({value:f}) => fmap(f, m)]
-  ])
-})
+_instance(Applicative, Either)
+  .where({
+    pure: right,
+    '<*>': (mf, m) => _case(mf)
+      .of([
+        [Left, identity],
+        [Right, ({
+          value: f
+        }) => fmap(f, m)]
+      ])
+  })
 
-_instance(Monad, Either).where({
-  '>>=': (m, k) => _case(m).of([
-    [Left,   identity]
-    ,[Right, ({value:r}) => k(r)]
-  ])
-})
+_instance(Monad, Either)
+  .where({
+    '>>=': (m, k) => _case(m)
+      .of([
+        [Left, identity],
+        [Right, ({
+          value: r
+        }) => k(r)]
+      ])
+  })
