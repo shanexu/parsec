@@ -3,7 +3,7 @@ import { _instance, _case, _extend } from '../utils.js'
 import Enum, { fromEnum } from '../Enum.js'
 import Eq from '../Eq.js'
 import Ord, { compare } from '../Ord.js'
-import { LT, EQ, GT } from '../ordering.js'
+import { LT, EQ, GT } from '../Ordering.js'
 
 export class MessageData {
   constructor(s) {
