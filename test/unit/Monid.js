@@ -1,4 +1,4 @@
-import { mconcat } from '../../src/monid.js'
+import { mconcat } from '../../src/Monid.js'
 
 describe('monid', () => {
   it('should monid array mempty', () => {

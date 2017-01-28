@@ -1,4 +1,4 @@
-import Functor, { fmap } from '../../src/functor.js'
+import Functor, { fmap } from '../../src/Functor.js'
 import { isEqual } from 'lodash/fp'
 
 describe('Functor', () => {

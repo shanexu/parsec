@@ -1,6 +1,6 @@
 import { _instance, _extend, _case, _instance_method, otherwise } from '../utils.js'
 import { curry, head, tail } from 'lodash/fp'
-import M from '../monad.js'
+import M from '../Monad.js'
 import { just, Nothing } from '../Maybe.js'
 
 let Stream = {

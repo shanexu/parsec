@@ -1,8 +1,8 @@
 import { compose } from 'lodash/fp'
 import { _extend, _instance } from './utils.js'
-import Functor from './functor.js'
-import Applicative from './applicative.js'
-import Monad from './monad.js'
+import Functor from './Functor.js'
+import Applicative from './Applicative.js'
+import Monad from './Monad.js'
 
 
 export class Identity {

@@ -1,8 +1,8 @@
 import { identity } from 'lodash/fp'
 import { Maybe, Nothing, Just, just } from '../../src/Maybe.js'
-import Functor from '../../src/functor.js'
-import Applicative, { pure, liftA2, liftA } from '../../src/applicative.js'
-import M from '../../src/monad.js'
+import Functor from '../../src/Functor.js'
+import Applicative, { pure, liftA2, liftA } from '../../src/Applicative.js'
+import M from '../../src/Monad.js'
 
 describe('Maybe', () => {
   it('should Nothing', () => {

@@ -10,9 +10,9 @@ import {
 } from './utils.js'
 import Functor, {
   fmap
-} from './functor.js'
-import Applicative from './applicative.js'
-import Monad from './monad.js'
+} from './Functor.js'
+import Applicative from './Applicative.js'
+import Monad from './Monad.js'
 
 let payload = {}
 

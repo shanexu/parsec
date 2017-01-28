@@ -2,10 +2,10 @@
 
 import { curry, compose } from 'lodash/fp'
 import { _instance, _extend, _case } from '../utils.js'
-import Functor from '../functor.js'
-import Applicative from '../applicative.js'
-import M from '../monad.js'
-import Identity from '../identity.js'
+import Functor from '../Functor.js'
+import Applicative from '../Applicative.js'
+import M from '../Monad.js'
+import Identity from '../Identity.js'
 import { newErrorUnknown, newErrorMessage, SysUnExpect, UnExpect } from './error.js'
 
 const payload = {}

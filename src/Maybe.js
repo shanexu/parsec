@@ -1,7 +1,7 @@
 import { _instance, _extend } from './utils.js'
-import Functor, { fmap } from './functor.js'
-import Applicative from './applicative.js'
-import Monad from './monad.js'
+import Functor, { fmap } from './Functor.js'
+import Applicative from './Applicative.js'
+import Monad from './Monad.js'
 import Alternative from './Alternative.js'
 import { _case } from './utils.js'
 
