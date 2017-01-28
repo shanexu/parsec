@@ -1,4 +1,4 @@
-import { compare } from '../../src/ord.js'
+import { compare } from '../../src/Ord.js'
 import { LT, EQ, GT } from '../../src/ordering.js'
 import '../../src/eq.js'
 
