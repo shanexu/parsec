@@ -179,4 +179,4 @@ export class Parsec extends ParsecT {
     super(Identity, unParser)
   }
 }
-export let ParsecT_ = unParser => new Parsec(unParser)
+// export let ParsecT_ = unParser => new Parsec(unParser)

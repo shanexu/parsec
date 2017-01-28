@@ -93,4 +93,4 @@ export let updatePosChar = curry(({name, line, column}, c) => _case(c).of([
 // @pos@ by calling 'updatePosChar' on every character in @s@, ie.
 // @foldl updatePosChar pos string@.
 // updatePosString :: SourcePos -> String -> SourcePos
-export let updatePosChar = curry((pos, string) => reduce(updatePosChar, pos, string))
+// export let updatePosChar = curry((pos, string) => reduce(updatePosChar, pos, string))
