@@ -1,4 +1,4 @@
-import '../../src/show.js'
+import '../../src/Show.js'
 
 describe('Show', () => {
   it('should string show', () => {
