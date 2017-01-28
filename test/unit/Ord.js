@@ -1,6 +1,6 @@
 import { compare } from '../../src/Ord.js'
 import { LT, EQ, GT } from '../../src/ordering.js'
-import '../../src/eq.js'
+import '../../src/Eq.js'
 
 describe('Ord', () => {
   it('should number compare', () => {
