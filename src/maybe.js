@@ -2,7 +2,7 @@ import { _instance, _extend } from './utils.js'
 import Functor, { fmap } from './functor.js'
 import Applicative from './applicative.js'
 import Monad from './monad.js'
-import Alternative from './alternative.js'
+import Alternative from './Alternative.js'
 import { _case } from './utils.js'
 
 const payload = {}
