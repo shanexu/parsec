@@ -1,7 +1,7 @@
 import { _instance, _extend, _case, _instance_method, otherwise } from '../utils.js'
 import { curry, head, tail } from 'lodash/fp'
 import M from '../monad.js'
-import { just, Nothing } from '../maybe.js'
+import { just, Nothing } from '../Maybe.js'
 
 let Stream = {
   uncons: curry((m, str) => M.return(m)(_instance_method(Stream, 'uncons', str)(str)))

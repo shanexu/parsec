@@ -1,5 +1,5 @@
 import { identity } from 'lodash/fp'
-import { Maybe, Nothing, Just, just } from '../../src/maybe.js'
+import { Maybe, Nothing, Just, just } from '../../src/Maybe.js'
 import Functor from '../../src/functor.js'
 import Applicative, { pure, liftA2, liftA } from '../../src/applicative.js'
 import M from '../../src/monad.js'
