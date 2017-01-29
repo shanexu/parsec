@@ -1,4 +1,4 @@
-import 'Eq'
+import 'Data/Eq'
 
 describe('Ea', () => {
   it('should array ==', () => {

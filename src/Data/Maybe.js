@@ -6,7 +6,7 @@ import {
 import Functor, {
   fmap
 } from 'Data/Functor'
-import Applicative from 'Applicative'
+import Applicative from 'Control/Applicative'
 import Monad from 'Monad'
 import Alternative from 'Alternative'
 

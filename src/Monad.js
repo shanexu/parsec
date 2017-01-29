@@ -1,6 +1,6 @@
 import { curry, flatMap, flip } from 'lodash/fp'
 import { _instance_method, _instance, _extend } from 'utils'
-import { pure } from 'Applicative'
+import { pure } from 'Control/Applicative'
 
 let binding = curry((ma, f) => _instance_method(Monad, '>>=', ma)(ma, f))
 let defaultFail = s => { throw new Error(s) }

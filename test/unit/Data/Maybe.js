@@ -12,7 +12,7 @@ import Applicative, {
   pure,
   liftA2,
   liftA
-} from 'Applicative'
+} from 'Control/Applicative'
 import M from 'Monad'
 
 describe('Maybe', () => {

@@ -1,7 +1,7 @@
 import { curry, reduce, isEqual } from 'lodash/fp'
 import { _case, _instance, _extend } from 'utils'
 import Ord, { compare } from 'Ord'
-import Eq from 'Eq'
+import Eq from 'Data/Eq'
 import { EQ } from 'Ordering'
 
 // | The abstract data type @SourcePos@ represents source positions. It
