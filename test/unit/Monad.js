@@ -1,4 +1,4 @@
-import M from '../../src/Monad.js'
+import M from 'Monad.js'
 
 describe('Monad', () => {
   it('should return Array', () => {

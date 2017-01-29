@@ -1,4 +1,4 @@
-import Applicative, { pure } from '../../src/Applicative.js'
+import Applicative, { pure } from 'Applicative.js'
 import { isEqual } from 'lodash/fp'
 
 describe('Applicative', () => {

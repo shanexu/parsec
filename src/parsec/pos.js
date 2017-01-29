@@ -1,5 +1,5 @@
 import { curry, reduce, isEqual } from 'lodash/fp'
-import { _case, _instance, _extend } from '../utils.js'
+import { _case, _instance, _extend } from 'utils.js'
 import Ord, { compare } from '../Ord.js'
 import Eq from '../Eq.js'
 import { EQ } from '../Ordering.js'

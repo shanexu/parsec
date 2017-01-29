@@ -5,7 +5,7 @@ import {
 import {
   _case,
   otherwise
-} from '../../utils.js'
+} from 'utils.js'
 
 export class SourcePos {
   constructor(name, line, column) {

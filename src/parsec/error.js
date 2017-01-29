@@ -1,5 +1,5 @@
 import { sortBy, curry, filter, isEmpty, concat } from 'lodash/fp'
-import { _instance, _case, _extend } from '../utils.js'
+import { _instance, _case, _extend } from 'utils.js'
 import Enum, { fromEnum } from '../Enum.js'
 import Eq from '../Eq.js'
 import Ord, { compare } from '../Ord.js'

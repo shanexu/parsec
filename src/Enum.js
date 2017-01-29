@@ -1,5 +1,5 @@
 import { curry } from 'lodash/fp'
-import { _instance_method } from './utils.js'
+import { _instance_method } from 'utils.js'
 
 // | Class 'Enum' defines operations on sequentially ordered types.
 //
