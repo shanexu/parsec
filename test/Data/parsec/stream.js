@@ -1,5 +1,5 @@
 import { uncons } from '../../../src/parsec/stream.js'
-import { Nothing, Just } from '../../../src/Maybe.js'
+import { Nothing, Just } from '../../../src/Data/Maybe.js'
 
 describe('Stream', () => {
   it('should uncons array []', () => {
