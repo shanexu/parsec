@@ -1,4 +1,4 @@
-import { empty } from '../../src/Alternative.js'
+import { empty } from 'Alternative'
 
 describe('Alternative', () => {
   it('should array empty', () => {

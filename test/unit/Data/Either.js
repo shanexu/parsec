@@ -1,4 +1,4 @@
-import { Right, Left, right, left } from 'Data/Either.js'
+import { Right, Left, right, left } from 'Data/Either'
 
 describe('either', () => {
   it('should fmap Left', () => {

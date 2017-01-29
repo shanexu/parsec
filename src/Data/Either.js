@@ -7,12 +7,12 @@ import {
   _instance,
   _case,
   _extend
-} from 'utils.js'
+} from 'utils'
 import Functor, {
   fmap
-} from 'Data/Functor.js'
-import Applicative from 'Applicative.js'
-import Monad from 'Monad.js'
+} from 'Data/Functor'
+import Applicative from 'Applicative'
+import Monad from 'Monad'
 
 let payload = {}
 

@@ -1,8 +1,8 @@
 import { curry, reduce, isEqual } from 'lodash/fp'
-import { _case, _instance, _extend } from 'utils.js'
-import Ord, { compare } from '../Ord.js'
-import Eq from '../Eq.js'
-import { EQ } from '../Ordering.js'
+import { _case, _instance, _extend } from 'utils'
+import Ord, { compare } from 'Ord'
+import Eq from 'Eq'
+import { EQ } from 'Ordering'
 
 // | The abstract data type @SourcePos@ represents source positions. It
 // contains the name of the source (i.e. file name), a line number and

@@ -1,6 +1,6 @@
 import {
   _case
-} from 'utils.js'
+} from 'utils'
 
 describe('utils', () => {
   describe('should case of', () => {

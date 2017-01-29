@@ -2,7 +2,7 @@ import {
   _instance_method,
   _instance,
   _extend
-} from 'utils.js'
+} from 'utils'
 
 let show = a => _instance_method(Show, 'show', a)(a)
 

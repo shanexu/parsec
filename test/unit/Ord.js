@@ -1,5 +1,5 @@
-import { compare } from '../../src/Ord.js'
-import { LT, EQ, GT } from '../../src/Ordering.js'
+import { compare } from 'Ord'
+import { LT, EQ, GT } from 'Ordering'
 import '../../src/Eq.js'
 
 describe('Ord', () => {

@@ -1,6 +1,6 @@
 import { identity, curry, flip, flatMap } from 'lodash/fp'
-import { _instance_method, _instance, _extend } from 'utils.js'
-import Functor from 'Data/Functor.js'
+import { _instance_method, _instance, _extend } from 'utils'
+import Functor from 'Data/Functor'
 
 let pure = curry((f, a) => _instance_method(Applicative, 'pure', f)(a))
 let f1 = curry((fab, fa) => _instance_method(Applicative, '<*>', fab)(fab, fa))

@@ -1,5 +1,5 @@
 import { curry, reduce } from 'lodash/fp'
-import { _instance_method, _instance, _extend } from 'utils.js'
+import { _instance_method, _instance, _extend } from 'utils'
 
 let mempty = m => _instance_method(Monid, 'mempty', m)
 let mappend = curry((a1, a2) => _instance_method(Monid, 'mappend', a1)(a1, a2))

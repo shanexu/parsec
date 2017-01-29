@@ -6,14 +6,14 @@ import {
   Nothing,
   Just,
   just
-} from 'Data/Maybe.js'
-import Functor from 'Data/Functor.js'
+} from 'Data/Maybe'
+import Functor from 'Data/Functor'
 import Applicative, {
   pure,
   liftA2,
   liftA
-} from 'Applicative.js'
-import M from 'Monad.js'
+} from 'Applicative'
+import M from 'Monad'
 
 describe('Maybe', () => {
   it('should Nothing', () => {

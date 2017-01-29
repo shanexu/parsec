@@ -1,4 +1,4 @@
-import '../../src/Eq.js'
+import 'Eq'
 
 describe('Ea', () => {
   it('should array ==', () => {

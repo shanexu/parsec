@@ -2,13 +2,13 @@ import {
   _instance,
   _extend,
   _case
-} from 'utils.js'
+} from 'utils'
 import Functor, {
   fmap
-} from 'Data/Functor.js'
-import Applicative from 'Applicative.js'
-import Monad from 'Monad.js'
-import Alternative from 'Alternative.js'
+} from 'Data/Functor'
+import Applicative from 'Applicative'
+import Monad from 'Monad'
+import Alternative from 'Alternative'
 
 const payload = {}
 

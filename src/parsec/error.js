@@ -1,9 +1,9 @@
 import { sortBy, curry, filter, isEmpty, concat } from 'lodash/fp'
-import { _instance, _case, _extend } from 'utils.js'
-import Enum, { fromEnum } from '../Enum.js'
+import { _instance, _case, _extend } from 'utils'
+import Enum, { fromEnum } from 'Enum'
 import Eq from '../Eq.js'
-import Ord, { compare } from '../Ord.js'
-import { LT, EQ, GT } from '../Ordering.js'
+import Ord, { compare } from 'Ord'
+import { LT, EQ, GT } from 'Ordering'
 
 export class MessageData {
   constructor(s) {

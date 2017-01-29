@@ -1,6 +1,6 @@
 import { curry } from 'lodash/fp'
-import { _instance_method, _instance, _extend } from 'utils.js'
-import { LT, EQ, GT } from './Ordering.js'
+import { _instance_method, _instance, _extend } from 'utils'
+import { LT, EQ, GT } from 'Ordering'
 
 let compare = curry((a1, a2) => _instance_method(Ord, 'compare', a1)(a1, a2))
 let lt = curry((a1, a2) => compare(a1, a2) === LT)
