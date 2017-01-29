@@ -1,6 +1,6 @@
 import { _instance, _extend, _case, _instance_method, otherwise } from 'utils'
 import { curry, head, tail } from 'lodash/fp'
-import M from 'Monad'
+import M from 'Control/Monad'
 import { just, Nothing } from 'Data/Maybe'
 
 let Stream = {

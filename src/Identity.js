@@ -2,7 +2,7 @@ import { compose } from 'lodash/fp'
 import { _extend, _instance } from 'utils'
 import Functor from 'Data/Functor'
 import Applicative from 'Control/Applicative'
-import Monad from 'Monad'
+import Monad from 'Control/Monad'
 
 
 export class Identity {

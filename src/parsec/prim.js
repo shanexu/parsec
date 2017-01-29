@@ -4,7 +4,7 @@ import { curry, compose } from 'lodash/fp'
 import { _instance, _extend, _case } from 'utils'
 import Functor from 'Data/Functor'
 import Applicative from 'Control/Applicative'
-import M from 'Monad'
+import M from 'Control/Monad'
 import Identity from 'Identity'
 import { newErrorUnknown, newErrorMessage, SysUnExpect, UnExpect } from './error.js'
 

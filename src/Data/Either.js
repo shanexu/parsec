@@ -12,7 +12,7 @@ import Functor, {
   fmap
 } from 'Data/Functor'
 import Applicative from 'Control/Applicative'
-import Monad from 'Monad'
+import Monad from 'Control/Monad'
 
 let payload = {}
 

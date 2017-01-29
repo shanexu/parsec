@@ -13,7 +13,7 @@ import Applicative, {
   liftA2,
   liftA
 } from 'Control/Applicative'
-import M from 'Monad'
+import M from 'Control/Monad'
 
 describe('Maybe', () => {
   it('should Nothing', () => {

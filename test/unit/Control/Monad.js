@@ -1,4 +1,4 @@
-import M from 'Monad'
+import M from 'Control/Monad'
 
 describe('Monad', () => {
   it('should return Array', () => {
