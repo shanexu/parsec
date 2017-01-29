@@ -10,7 +10,7 @@ import {
 } from './utils.js'
 import Functor, {
   fmap
-} from './Functor.js'
+} from 'Data/Functor.js'
 import Applicative from './Applicative.js'
 import Monad from './Monad.js'
 

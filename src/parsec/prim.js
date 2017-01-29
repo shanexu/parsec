@@ -2,7 +2,7 @@
 
 import { curry, compose } from 'lodash/fp'
 import { _instance, _extend, _case } from '../utils.js'
-import Functor from '../Functor.js'
+import Functor from 'Data/Functor.js'
 import Applicative from '../Applicative.js'
 import M from '../Monad.js'
 import Identity from '../Identity.js'

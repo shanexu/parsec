@@ -7,7 +7,7 @@ import {
   Just,
   just
 } from 'Data/Maybe.js'
-import Functor from 'Functor.js'
+import Functor from 'Data/Functor.js'
 import Applicative, {
   pure,
   liftA2,
