@@ -1,4 +1,6 @@
-import 'Text/Show'
+import {
+  show
+} from 'Text/Show'
 
 describe('Show', () => {
   it('should string show', () => {
@@ -26,5 +28,11 @@ describe('Show', () => {
       .to.eql('1')
     expect(n2.show())
       .to.eql('1.1111111111111112e+28')
+  })
+
+  it('should show number', () => {
+    let n1 = 1
+    expect(n1.show() === show(n1))
+      .to.eql(true)
   })
 })

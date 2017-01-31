@@ -1,11 +1,16 @@
 import {
   curry
 } from 'lodash/fp'
-
 import {
+  _instance,
+  _extend,
   _case,
   otherwise
 } from 'utils'
+import * as Show from 'Text/Show'
+import {
+  show
+} from 'Text/Show'
 
 export class SourcePos {
   constructor(name, line, column) {
@@ -78,9 +83,34 @@ export let setSourceColumn = curry(({
 //         '\n' -> SourcePos name (line+1) 1
 //         '\t' -> SourcePos name line (column + 8 - ((column-1) `mod` 8))
 //         _    -> SourcePos name line (column + 1)
-export let updatePosChar = ({name, line, column}, c) =>
-  _case(c).of([
+export let updatePosChar = ({
+    name,
+    line,
+    column
+  }, c) =>
+  _case(c)
+  .of([
     ['\n', () => newPos(name, line + 1, 1)],
     ['\t', () => newPos(name, line, (column + 8 - ((column - 1) % 8)))],
     [otherwise, () => newPos(name, line, column + 1)]
   ])
+
+_instance(Show, SourcePos)
+  .where({
+    'show': ({
+      name,
+      line,
+      column
+    }) => {
+      let showLineColumn = () =>
+        '(line ' + show(line) +
+        ', column ' + show(column) +
+        ')'
+      return _case(name)
+        .of([
+          [null, () => showLineColumn()],
+          [otherwise, () => '"' + name + '"' + showLineColumn()]
+        ])
+    }
+  })
+_extend(SourcePos.prototype, Show._methods)
